@@ -1,10 +1,9 @@
 package com.cars.Cars;
 
-import java.util.Arrays;
 
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,7 +38,19 @@ public class CarController
         @RequestParam String carYear,
         @RequestParam String carReg
     ){
-        carRepo.save( new Car(vinCode, carBrand, carModel, carYear, carReg) );	
+        
+        // Save
+        carRepo.save( 
+            new Car( 
+                vinCode, 
+                carBrand, 
+                carModel, 
+                carYear, 
+                carReg,
+                new ArrayList<>()
+            ) 
+        );
+
         return "redirect:/addcar";
     }
 

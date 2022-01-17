@@ -1,6 +1,12 @@
 package com.cars.Cars;
 
+
+
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+
 // import javax.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +25,7 @@ public class Client extends AbstractPersistable<Long> {
     // Reg number
     private String surname;
     
-    // @ManyToMany
-    // private List<Tili> tilit = new ArrayList<>();
+    @ManyToMany(mappedBy = "clients")
+    private List<Car> cars = new ArrayList<>();
 
 }
