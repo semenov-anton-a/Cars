@@ -21,18 +21,19 @@ public class Car extends AbstractPersistable<Long> {
     // VIN Code
     private String vinCode;
 
-    // Reg number
-    private String carReg;
     
     // Car Brand
     private String carBrand;
-
+    
     // Car Model
     private String carModel;
-
+    
+    // Reg number
+    private String carReg;
+    
     // Car Year
     private String carYear;
-
+    
     @ManyToMany
     private List<Client> clients = new ArrayList<>();
 
