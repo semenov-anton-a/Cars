@@ -1,31 +1,39 @@
 package com.cars.Cars;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 // import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.ResponseBody;
-// import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ClientController 
 {
+    @Autowired
+    private ClientRepository clientRepo;
+
     @GetMapping("/addclient")
     public String Home()
     {
         return "addclient"; 
     }
 
+    /**
+     * Get POST 
+     * Save user Data
+     * @param firstname
+     * @param surname
+     * @return
+     * 
+     * 
+     */
     @PostMapping("/addclient")
     public String addClient( 
         @RequestParam String firstname,
         @RequestParam String surname
-    ){
-        
-        System.out.println( firstname + " " + surname );
-        
+    ){       
+        clientRepo.save( new Client(firstname, surname) );
         return "redirect:/addclient";
     }
 
