@@ -34,7 +34,7 @@
                             <a class="nav-link" href="/addcar">Add Car</a>
                         </li>
                         <li class="nav-item me-5">
-                            <a class="nav-link" href="/addclient">Add Clients</a>
+                            <a class="nav-link" href="/addclient">Add Client</a>
                         </li>
                     </ul>
                 </div>
@@ -42,42 +42,37 @@
         </nav>
 
         <div class="row mt-5">
-            <div class="col-md-6">
-                <h5 class="text-center">Cars</h5>
-                <form method="POST" th:action="@{/fowners}">
-                    <select class="form-select" name="carID" aria-label="Default select example">
-                        <option disabled selected hidden>Select Car</option>
-                        <option value="1">Audi QWE-123</option>
-                        <option value="2">Ford ZXC-456</option>
-                        <option value="3">BMW RTY-555</option>
-                    </select>
-                    <input type="submit" class="btn btn-primary mt-2" value="Search"/>
-                </form>
+            <div class="col-md-12">
+                <h5 class="text-center">Add Car</h5>
+                <form method="POST" th:action="@{/addcar}">
 
-                <!-- Result -->
-                <div class="mt-5">
-                    <span>ID : </span><span th:text=${ownersList}></span>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <h5 class="text-center">Owners</h5>
-                <form method="POST" th:action="@{/fcars}">
-                    <select class="form-select" name="ownerID" aria-label="Default select example">
-                        <option disabled selected hidden>Select Owner</option>
-                        <option value="1">Pekka</option>
-                        <option value="2">Matti</option>
-                    </select>
-                    <input type="submit" class="btn btn-primary mt-2" value="Search"/>
-                </form>
+                    <!-- VIN CODE -->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">VIN Code:</span>
+                        <input type="text" name="car[]" class="form-control" />
+                    </div>
 
-                <!-- Result -->
-                <div class="mt-5">
-                    <span>ID : </span><span th:text=${carsList}></span>
-                </div>
+                    <!-- Car Brand & Model -->
+                    <div class="input-group mb-3 d-flex">
+                        <input type="text" name="car[]" class="form-control me-1" placeholder="Car Brand">
+                        <input type="text" name="car[]" class="form-control ms-1" placeholder="Car Model">
+                    </div>
+
+                    <!-- Year of manufacture && REG Number-->
+                    <div class="input-group mb-3 d-flex">
+                        <input type="number" name="car[]" 
+                            class="form-control me-1" min="1940" max="2022" step="1"
+                            placeholder="Year of manufacture (1940-2022)">
+                        <input type="text" name="car[]" class="form-control me-1" placeholder="REG Number">
+                    </div>                    
+                    <!-- SAVE -->
+                    <input type="submit" class="btn btn-primary mt-2" value="Add" />
+                </form>
             </div>
+
         </div>
 
-      
+
 
 
     </div>
