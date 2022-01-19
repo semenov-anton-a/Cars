@@ -2,6 +2,7 @@ package com.cars.Cars;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -42,11 +43,7 @@ public class ClientController
         @RequestParam String surname
     ){       
         clientRepo.save( 
-            new Client( 
-                firstname, 
-                surname, 
-                new ArrayList<>()
-            )
+            new Client( firstname, surname, new ArrayList<>() )
         );
 
         return "redirect:/addclient";
@@ -56,9 +53,19 @@ public class ClientController
     @Transactional
     @PostMapping("/addclient/clicars")
     public String addRelClientCars( 
-        @RequestParam String clientid,
-        @RequestParam(value="carids[]") Long[] carids
+        @RequestParam Long clientid,
+        @RequestParam (value = "carids[]") List<Long> carids
     ){
+
+        // System.out.println(clientid);
+        // System.out.println("============");
+        // System.out.println(carids);
+
+
+        carids.forEach( c -> carRepo.addLinks(clientid, c) );
+
+
+
         // Long clientID = (long) Integer.parseInt(clientid);
 
 
